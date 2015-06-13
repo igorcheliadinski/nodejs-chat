@@ -60,7 +60,7 @@ $(document).ready(function() {
 		$('#send-message').focus();
 	});
 	setInterval(function () {
-		socket.emit(rooms);
+		socket.emit('rooms');
 	}, 1000);
 	$('#send-message').focus();
 
