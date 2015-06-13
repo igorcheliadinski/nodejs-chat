@@ -3,8 +3,10 @@ var fs = require('fs');
 var path = require('path');
 var mime = require('mime');
 
+// Caching
 var cache = {};
 
+// Methods to work with static
 function send404(response) {
 	response.writeHead(404, {'Content-Type': 'text/plain'});
 	response.write('Error 404: Resource Not Found!');
@@ -35,6 +37,7 @@ function serveStatic(response, cache, absPath) {
 	}
 }
 
+// Server
 var server = http.createServer(function (request, response) {
 	var filePath = false;
 	if (request.url == '/') {
@@ -48,3 +51,7 @@ var server = http.createServer(function (request, response) {
 server.listen(3000, function () {
 	console.log('Server litening on port 3000...');
 });
+
+// Socket
+var chatServer = require('./lib/chat_server');
+chatServer.listen(server);
